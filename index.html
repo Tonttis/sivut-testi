@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scroll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .hello {
+            font-size: 2rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="hello">Hello</div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+
+        function addHello() {
+            for (let i = 0; i < 10; i++) {
+                let helloElement = document.createElement('div');
+                helloElement.className = 'hello';
+                helloElement.textContent = 'Hello';
+                container.appendChild(helloElement);
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+                addHello();
+            }
+        });
+
+        // Initial load
+        addHello();
+    </script>
+
+</body>
+</html>
